@@ -1,5 +1,6 @@
 package io.mohkeita.school_management.model;
 
+import io.mohkeita.school_management.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,8 @@ public class User {
     private String email;
 
     private String password;
+
+    private UserRole role;
 
 
 }
