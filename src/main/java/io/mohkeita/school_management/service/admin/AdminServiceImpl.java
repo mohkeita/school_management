@@ -4,7 +4,10 @@ import io.mohkeita.school_management.enums.UserRole;
 import io.mohkeita.school_management.model.User;
 import io.mohkeita.school_management.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,8 +29,13 @@ public class AdminServiceImpl {
             admin.setRole(UserRole.ADMIN);
             admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
             userRepository.save(admin);
-
         }
+
+    }
+
+    //@Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
 
     }
 }
